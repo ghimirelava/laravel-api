@@ -11,8 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Create the customers table
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('type'); // 'individual' or 'business'
+            $table->string('email')->unique();
+            $tabel->string('adress');
+            $table->string('city');
+            $table->string('state');
+            $table->string('postal_code');
             $table->timestamps();
         });
     }
