@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,20 @@ class CustomerFactory extends Factory
      */
     public function definition(): array
     {
+
+        // Generate a random "type of business" for the customer
+        $type = $this->faker->randomElement(['individual', 'business']);
+        // Generate a random name for the customer
+        $name = $type === 'individual' ? $this->faker->name() : $this->faker->company();
+        
         return [
-            //
+            'name' => $name,
+            'type' => $type,
+            'email' => $this->faker->unique()->safeEmail(),
+            'address' => $this->faker->streetAddress(),
+            'city' => $this->faker->city(),
+            'state' => $this->faker->state(),
+            'postal_code' => $this->faker->postcode()
         ];
     }
 }
