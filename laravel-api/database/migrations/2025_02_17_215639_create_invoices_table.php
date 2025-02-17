@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Create the invoices table
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->integer('customer_id'); // Foreign key: foreignId('customer_id')->constrained()->onDelete('cascade')
+            $table->intger('amount');
+            $table->string('status'); // b = billed, p = paid, v = void
+            $table->dateTime('billed_date');
+            $table->dateTime('paid_date')->nullable();
             $table->timestamps();
         });
     }
