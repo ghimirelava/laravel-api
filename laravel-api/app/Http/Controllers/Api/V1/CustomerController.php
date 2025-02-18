@@ -8,6 +8,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CustomerResource;
+use App\Http\Resources\V1\CustomerCollection;
 
 class CustomerController extends Controller
 {
@@ -16,7 +17,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return Customer::all();
+        //return Customer::all();
+        return new CustomerCollection(Customer::paginate()); // Can return all customers with limited database columns
     }
 
     /**
