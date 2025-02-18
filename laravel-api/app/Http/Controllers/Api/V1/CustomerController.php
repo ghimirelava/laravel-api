@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
@@ -24,7 +25,7 @@ class CustomerController extends Controller
     {
         //
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
