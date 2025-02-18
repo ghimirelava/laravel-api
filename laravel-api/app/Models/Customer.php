@@ -11,7 +11,7 @@ class Customer extends Model
     use HasFactory;
 
     // Define the relationship between the Customer and Invoice models (1:M)
-    public function invoice() {
+    public function invoices() {
         return $this->hasMany(Invoice::class);
     }
         

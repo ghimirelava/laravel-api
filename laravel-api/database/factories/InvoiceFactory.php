@@ -25,7 +25,7 @@ class InvoiceFactory extends Factory
             'customer_id' => Customer::factory(), // customer_id comes from customer factory because its the foreign key
             'amount' => $this->faker->numberBetween(100, 20000), // not 0 and not negative
             'status' => $status,
-            'bill_date' => $this->faker->dateTimeThisDecade(),
+            'billed_date' => $this->faker->dateTimeThisDecade(),
             // If status is paid then create a random date for paid_date column otherwise set it to null
             'paid_date' => $status === 'paid' ? $this->faker->dateTimeThisDecade() : NULL
             // Ignore timestamps and table id as it is auto generated/incremented
