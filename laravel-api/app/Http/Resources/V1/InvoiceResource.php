@@ -14,6 +14,16 @@ class InvoiceResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        //return parent::toArray($request);
+
+        // Specifying the keys we want to expose and how we want to expose them
+        return [
+            'id' => $this->id,
+            'customerId' => $this->customer_id,
+            'amount' => $this->amount,
+            'status' => $this->status,
+            'billedDate' => $this->billed_date,
+            'paidDate' => $this->paid_date,
+        ];
     }
 }
