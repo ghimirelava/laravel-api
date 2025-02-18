@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        return Customer::all();
     }
 
     /**
@@ -24,7 +24,7 @@ class CustomerController extends Controller
     {
         //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
