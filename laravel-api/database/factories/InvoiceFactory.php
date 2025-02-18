@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Customer;
+use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,7 +27,7 @@ class InvoiceFactory extends Factory
             'status' => $status,
             'bill_date' => $this->faker->dateTimeThisDecade(),
             // If status is paid then create a random date for paid_date column otherwise set it to null
-            'paid_date' => $status === 'paid' ? $this->faker->dateTimeThisDecade() : NULL,
+            'paid_date' => $status === 'paid' ? $this->faker->dateTimeThisDecade() : NULL
             // Ignore timestamps and table id as it is auto generated/incremented
         ];
     }

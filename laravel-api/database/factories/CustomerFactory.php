@@ -15,6 +15,10 @@ class CustomerFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    
+    //protected $model = Customer::class;
+
     public function definition(): array
     {
 
