@@ -18,17 +18,16 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = new CustomersFilter(); // should you new up the construtor here or create a facde for the filter?
-        $queryItems = $filter->transform($request); //[[column, operator, value], [column, operator, value], ...]
+        $filter = new CustomersFilter(); 
+        $filterItems = $filter->transform($request); //[[column, operator, value], [column, operator, value], ...]
+        
+        $includeInvoices = $request->query('include');
 
-        if (count($queryItems) == 0) {
-            return new CustomerCollection(Customer::paginate()); // Can return all customers
-        }else{ 
-            $customers = Customer::where($queryItems)->paginate();
-            
-            //error on the line below!!!!
-            return new CustomerCollection($customers->appends($request->query()));
-        }
+        //when querying with eloquent and pass an empty array with where(), there is nothing to paignate
+        //so its like you arent calling where at all so we can remove the if else block
+        // if you have no filters, return all customers. otherwise, return the filtered customers
+        $customers = Customer::where($filterItems)->paginate();
+        return new CustomerCollection($customers->appends($request->query()));
     }
 
     /**

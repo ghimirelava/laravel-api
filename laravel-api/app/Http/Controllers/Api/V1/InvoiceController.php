@@ -19,12 +19,13 @@ class InvoiceController extends Controller
     public function index(Request $request)
     {
         $filter = new InvoicesFilter(); // should you new up the construtor here or create a facde for the filter?
-        $queryItems = $filter->transform($request); //[[column, operator, value], [column, operator, value], ...]
+        $filterItems = $filter->transform($request); //[[column, operator, value], [column, operator, value], ...]
 
-        if (count($queryItems) == 0) {
+        // if you have no filters, return all invoices. otherwise, return the filtered invoices
+        if (count($filterItems) == 0) {
             return new InvoiceCollection(Invoice::paginate()); // Can return all customers
         }else{
-            $invoices = Invoice::where($queryItems)->paginate();
+            $invoices = Invoice::where($filterItems)->paginate();
             return new InvoiceCollection($invoices->append($request->query())); 
         }
     }
