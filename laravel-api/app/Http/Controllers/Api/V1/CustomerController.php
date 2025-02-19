@@ -27,7 +27,7 @@ class CustomerController extends Controller
             $customers = Customer::where($queryItems)->paginate();
             
             //error on the line below!!!!
-            return new CustomerCollection($customers->append($request->query()));
+            return new CustomerCollection($customers->appends($request->query()));
         }
     }
 
