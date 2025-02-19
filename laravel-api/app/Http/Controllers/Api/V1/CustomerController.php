@@ -56,8 +56,12 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //return $customer; // Can return a specific customer ex. localhost:8000/api/v1/customers/1
-        return new CustomerResource($customer); // Can return a specific customer with limited database columns ex. localhost:8000/api/v1/customers/1
+        $includeInvoices = request()->query('includeInvoices');
+
+        if ($includeInvoices) {
+            return new CustomerResource($customer->loadMissing('invoices'));
+        }
+        return new CustomerResource($customer);
     }
 
     /**
