@@ -21,13 +21,18 @@ class CustomerController extends Controller
         $filter = new CustomersFilter(); 
         $filterItems = $filter->transform($request); //[[column, operator, value], [column, operator, value], ...]
         
-        $includeInvoices = $request->query('include');
+        $includeInvoices = $request->query('includeInvoices');
 
-        //when querying with eloquent and pass an empty array with where(), there is nothing to paignate
+        //when querying with eloquent and you pass an empty array in where(), there is nothing to paignate
         //so its like you arent calling where at all so we can remove the if else block
-        // if you have no filters, return all customers. otherwise, return the filtered customers
-        $customers = Customer::where($filterItems)->paginate();
-        return new CustomerCollection($customers->appends($request->query()));
+        //if you have no filters, return all customers. otherwise, return the filtered customers
+        $customers = Customer::where($filterItems);
+        
+        if ($includeInvoices) {
+            $customers = $customers->with('invoices');
+        }
+
+        return new CustomerCollection($customers->paginate()->appends($request->query()));
     }
 
     /**

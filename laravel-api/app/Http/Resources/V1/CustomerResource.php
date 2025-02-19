@@ -26,6 +26,7 @@ class CustomerResource extends JsonResource
             'city' => $this->city,
             'state' => $this->state,
             'postalCode' => $this->postal_code, // Changed from postalCode to postal_code to follow JSON naming convention
+        
         ];
     }
 }
