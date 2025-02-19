@@ -18,7 +18,7 @@ class Customer extends Model
         'address',
         'city',
         'state',
-        'postalCode',
+        'postal_code',
     ];
 
     // Define the relationship between the Customer and Invoice models (1:M)
