@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Services\V1;
+namespace App\Filters\V1;
 
 use Illuminate\Http\Request;
+use App\Filters\ApiFilter;
 
-class CustomerQuery {
+class InvoicesFilter extends ApiFilter{
 
     //define the columns that are safe to query against
     protected $safeParams = [
@@ -59,23 +60,4 @@ class CustomerQuery {
 
         return $eloQuery;
     }
-
-
-
-
-
-
-    /*public function transform(Request $request): array
-    {
-        $queryItems = [];
-        $columns = ['id', 'name', 'email', 'phone', 'address', 'created_at', 'updated_at'];
-
-        foreach ($columns as $column) {
-            if ($request->has($column)) {
-                $queryItems[] = [$column, '=', $request->input($column)];
-            }
-        }
-
-        return $queryItems;
-    }*/
 }
