@@ -15,10 +15,16 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //return Customer::all();
-        return new CustomerCollection(Customer::paginate()); // Can return all customers with limited database columns
+        $filter = new CustomerQuery();
+        $queryItems = $filter->transform($request); //[[column, operator, value], [column, operator, value], ...]
+
+        if (count($queryItems) == 0) {
+            return new CustomerCollection(Customer::paginate()); // Can return all customers
+        }else{
+            return new CustomerCollection(Customer::where($queryItems)->paginate()); // Can return customers with specific query
+        }
     }
 
     /**
