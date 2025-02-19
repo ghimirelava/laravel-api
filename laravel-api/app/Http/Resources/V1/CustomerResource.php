@@ -26,7 +26,7 @@ class CustomerResource extends JsonResource
             'city' => $this->city,
             'state' => $this->state,
             'postalCode' => $this->postal_code, // Changed from postalCode to postal_code to follow JSON naming convention
-        
+            'invoices' => InvoiceResource::collection($this->whenLoaded('invoices')), // Add invoices to the response only when there are invoices to show
         ];
     }
 }
