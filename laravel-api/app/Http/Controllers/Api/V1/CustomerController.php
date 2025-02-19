@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreCustomerRequest;
-use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Requests\V1\StoreCustomerRequest;
+//use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,7 +40,7 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {   
-        // mimicing post request?
+        // mimicing post request, by returning a new entity
         return new CustomerResource(Customer::create($request->all()));
     }
 
