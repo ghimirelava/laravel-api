@@ -19,6 +19,8 @@ Route::get('/user', function (Request $request) {
 
 // api/v1
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function() {
-    Route::apiResource('customers', CustomerController::class);
-    Route::apiResource('invoices', InvoiceController::class);
+    Route::apiResource('customers', CustomerController::class); // here we are using the apiResource method to create a resourceful route for the customers endpoint
+    Route::apiResource('invoices', InvoiceController::class); // here we are using the apiResource method to create a resourceful route for the invoices endpoint
+
+    Route::post('invoices/bulk', ['uses' => 'InvoiceController@bulkStore']); // here we are creating a custom route for bulk storing invoices
 });
