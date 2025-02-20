@@ -49,10 +49,15 @@ class UpdateCustomerRequest extends FormRequest
         }
     }
 
-     // This method is used to prepare the data for validation
     protected function prepareForValidation() {
-        $this->merge([
-            'postal_code' => $this->postalCode
-         ]);
+
+        /*ensure postal_code is only merged if postalCode is provided in the request, 
+        preventing null values from overwriting postal_code and avoiding database constraint errors.*/
+        if ($this->postalCode) {
+            $this->merge([
+                'postal_code' => $this->postalCode
+             ]);
+        }
+       
     }
 }
