@@ -36,6 +36,7 @@ class UpdateCustomerRequest extends FormRequest
                 'postalCode' => ['required'], // notice the change from postal_code to postalCode to follow JSON naming convention
             ];
         } else { // PATCH
+            // add 'sometimes' because we are only updating the fields that are passed in the request
             return [
                 'name' => ['sometimes', 'required'],
                 'type' => ['sometimes', 'required', Rule::in(['individual', 'business'])],
