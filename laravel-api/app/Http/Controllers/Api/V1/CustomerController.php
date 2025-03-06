@@ -64,6 +64,7 @@ class CustomerController extends Controller
     {
         $customer->update($request->all());
         //return new CustomerResource($customer);
+        //return the updated queue inside a QueueResource so the client gets confirmation of the changes?
     }
 
     /**
